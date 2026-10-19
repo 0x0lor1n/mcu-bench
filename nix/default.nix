@@ -4,7 +4,7 @@ pkgs:
 let
   inherit (pkgs) lib;
 
-  fzgen = pkgs.python3Packages.callPackage ../fzgen { };
+  mcubench = pkgs.python3Packages.callPackage ../python { };
 
   # d2 embeds its font as @font-face, which resvg ignores, so the PNG pass
   # substitutes a real font-family first. Shell snippet: writes <out>.svg and
@@ -22,7 +22,7 @@ let
   ];
 
   # schemdraw script called as `script <out>.svg`; writes <out>.svg and <out>.png.
-  # Needs `python` (fzgen pulls schemdraw) and resvg in nativeBuildInputs.
+  # Needs `python` (mcubench pulls schemdraw) and resvg in nativeBuildInputs.
   renderSchematic = script: out: ''
     python3 ${script} ${out}.svg
     resvg --zoom 3 --background white ${out}.svg ${out}.png
@@ -30,7 +30,7 @@ let
 in
 {
   inherit
-    fzgen
+    mcubench
     renderD2
     renderInputs
     renderSchematic
@@ -41,7 +41,7 @@ in
   };
 
   # One interpreter for generators, the devshell and the checks.
-  python = extra: pkgs.python3.withPackages (p: [ (p.callPackage ../fzgen { }) ] ++ extra p);
+  python = extra: pkgs.python3.withPackages (p: [ (p.callPackage ../python { }) ] ++ extra p);
 
   # Copies an output dir over a tracked one (docs/), then shows what changed.
   mkRenderDocs =
@@ -93,7 +93,7 @@ in
       cp ${fzz}/* . && chmod u+w *
       ${pkgs.fritzing}/bin/Fritzing -svg $PWD > /dev/null 2>&1
       for s in ${lib.escapeShellArgs sketches}; do
-        fzgen-lint $s.fzz ''${s}_breadboard.svg $s.nets.json
+        fritzing-lint $s.fzz ''${s}_breadboard.svg $s.nets.json
       done
       ${
         lib.optionalString (cases != null) "python3 ${cases} ${pkgs.fritzing}/bin/Fritzing $PWD"

@@ -24,12 +24,16 @@ flash = b.boards.promicro.mkFlash "flash" firmware;
   libraries and extra flags), `mkFlash` (1200-baud touch, waits for the
   Caterina bootloader, avrdude), `devPackages`, `console`. One attrset per
   board; Uno/Pico get their own when a project needs them.
-- `fzgen`: Fritzing sketches from code. Place parts by "this pin goes into
-  that hole", check nets through the breadboard strips, write a `.fzz`; then
-  `fzgen-lint` re-reads what Fritzing rendered. `mkBenchFzz`, `mkBenchLint`
-  (with lint mutations that must be caught), `mkFizzel` (opens a sketch).
-- `fzgen.schematic` + `renderSchematic`: schemdraw schematics with a Pro
-  Micro box whose pins are checked against the same board map fzgen places.
+- Python package `mcubench` (in `lib.python`):
+  - `mcubench.boards`: pin maps, no dependencies. Both views below take
+    their pins from here, so a pin the board does not have fails in both.
+  - `mcubench.fritzing`: Fritzing sketches from code. Place parts by "this
+    pin goes into that hole", check nets through the breadboard strips, write
+    a `.fzz`; then `fritzing-lint` re-reads what Fritzing rendered.
+    `mkBenchFzz`, `mkBenchLint` (with lint mutations that must be caught),
+    `mkFizzel` (opens a sketch).
+  - `mcubench.schematic`: schemdraw helpers and board boxes;
+    `renderSchematic` turns a script into svg + png.
 - `mkSim`: compiles an unchanged `.ino` against a project's fake Arduino core
   and runs it.
 - `renderD2`, `mkRenderDocs`, `mkFreshCheck`: d2 diagrams to svg/png, and a
@@ -37,7 +41,7 @@ flash = b.boards.promicro.mkFlash "flash" firmware;
 - `mkDevShell { name, packages, commands }`: lefthook hooks, linters and a
   command table on entry.
 - `templates.project`: lefthook, gitleaks, clang-format, ruff, direnv config
-  (`nix flake init -t github:0x0lor1n/mcu-bench#project`).
+  (`nix flake init -t github:0x0lor1n/mcu-bench`).
 
 ## License
 

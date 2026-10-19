@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcubench"
+version = "0.1.0"
+description = "Board pin maps, Fritzing breadboards and schemdraw schematics from code"
+license = "MIT"
+requires-python = ">=3.11"
+
+[project.scripts]
+fritzing-lint = "mcubench.fritzing.lint:cli"
+
+[tool.setuptools.packages.find]
+include = ["mcubench*"]
+
+[tool.setuptools.package-data]
+"mcubench.fritzing" = ["vendor/*"]

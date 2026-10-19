@@ -4,12 +4,12 @@ import os
 import re
 import zipfile
 
+from ..boards.promicro import BOTTOM, TOP
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 # Rotated -90: TOP lands on row H, BOTTOM on row D, both from column col0.
 # Connector ids from SparkFun's part.
-TOP = ["RAW", "GND", "RST", "VCC", "A3", "A2", "A1", "A0", "15", "14", "16", "10"]
-BOTTOM = ["TX", "RX", "GND", "GND", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 
 def conn(pin):

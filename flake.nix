@@ -23,8 +23,8 @@
       };
 
       packages = forAll (pkgs: rec {
-        inherit (self.lib pkgs) fzgen;
-        default = fzgen;
+        inherit (self.lib pkgs) mcubench;
+        default = mcubench;
       });
 
       devShells = forAll (pkgs: {
@@ -34,7 +34,7 @@
           commands = [
             [
               "nix flake check"
-              "fzgen import, flash script shellcheck"
+              "mcubench import, flash script shellcheck"
             ]
           ];
         };
@@ -46,7 +46,7 @@
           bench = self.lib pkgs;
         in
         {
-          inherit (bench) fzgen;
+          inherit (bench) mcubench;
           # writeShellApplication runs shellcheck at build time.
           flash-promicro = bench.boards.promicro.mkFlash "flash" pkgs.emptyDirectory;
         }

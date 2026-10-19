@@ -1,6 +1,6 @@
 """Lint a bench sketch against its schematic, using only what Fritzing drew.
 
-  fzgen-lint <sketch.fzz> <sketch_breadboard.svg> <sketch.nets.json>
+  fritzing-lint <sketch.fzz> <sketch_breadboard.svg> <sketch.nets.json>
 
 The SVG is Fritzing's own export (Fritzing -svg). Fritzing trusts the
 <connects> saved in a .fzz and does not re-derive them from geometry, so

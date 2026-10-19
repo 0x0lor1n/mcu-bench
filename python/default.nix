@@ -7,18 +7,20 @@
 }:
 
 buildPythonPackage {
-  pname = "fzgen";
+  pname = "mcubench";
   version = "0.1.0";
   pyproject = true;
   src = ./.;
   build-system = [ setuptools ];
+  # For mcubench.schematic only; boards and fritzing are stdlib-only.
   dependencies = [
     schemdraw
     ziamath # schemdraw text="path"
     latex2mathml # ziamath imports it unconditionally
   ];
   pythonImportsCheck = [
-    "fzgen.sketch"
-    "fzgen.schematic"
+    "mcubench.boards.promicro"
+    "mcubench.fritzing.sketch"
+    "mcubench.schematic"
   ];
 }
