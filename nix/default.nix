@@ -20,9 +20,21 @@ let
     pkgs.d2
     pkgs.resvg
   ];
+
+  # schemdraw script called as `script <out>.svg`; writes <out>.svg and <out>.png.
+  # Needs `python` (fzgen pulls schemdraw) and resvg in nativeBuildInputs.
+  renderSchematic = script: out: ''
+    python3 ${script} ${out}.svg
+    resvg --zoom 3 --background white ${out}.svg ${out}.png
+  '';
 in
 {
-  inherit fzgen renderD2 renderInputs;
+  inherit
+    fzgen
+    renderD2
+    renderInputs
+    renderSchematic
+    ;
 
   boards = {
     promicro = import ./boards/promicro.nix pkgs;

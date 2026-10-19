@@ -28,6 +28,8 @@ flash = b.boards.promicro.mkFlash "flash" firmware;
   that hole", check nets through the breadboard strips, write a `.fzz`; then
   `fzgen-lint` re-reads what Fritzing rendered. `mkBenchFzz`, `mkBenchLint`
   (with lint mutations that must be caught), `mkFizzel` (opens a sketch).
+- `fzgen.schematic` + `renderSchematic`: schemdraw schematics with a Pro
+  Micro box whose pins are checked against the same board map fzgen places.
 - `mkSim`: compiles an unchanged `.ino` against a project's fake Arduino core
   and runs it.
 - `renderD2`, `mkRenderDocs`, `mkFreshCheck`: d2 diagrams to svg/png, and a

@@ -1,5 +1,5 @@
 {
-  description = "Nix helpers for small microcontroller projects: firmware build, flashers, Fritzing sketches from code, devshell";
+  description = "Nix helpers for small microcontroller projects: firmware, flashers, schematics and Fritzing breadboards from code, linted in nix flake check";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 

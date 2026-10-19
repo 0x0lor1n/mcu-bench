@@ -1,4 +1,10 @@
-{ buildPythonPackage, setuptools }:
+{
+  buildPythonPackage,
+  setuptools,
+  schemdraw,
+  ziamath,
+  latex2mathml,
+}:
 
 buildPythonPackage {
   pname = "fzgen";
@@ -6,5 +12,13 @@ buildPythonPackage {
   pyproject = true;
   src = ./.;
   build-system = [ setuptools ];
-  pythonImportsCheck = [ "fzgen.sketch" ];
+  dependencies = [
+    schemdraw
+    ziamath # schemdraw text="path"
+    latex2mathml # ziamath imports it unconditionally
+  ];
+  pythonImportsCheck = [
+    "fzgen.sketch"
+    "fzgen.schematic"
+  ];
 }
