@@ -1,7 +1,7 @@
 # mcu-bench
 
 Nix helpers for small microcontroller projects, shared by
-[nas-power-button](https://github.com/0x0lor1n/nas-power-button) and
+[atx-watchdog](https://github.com/0x0lor1n/atx-watchdog) and
 [pro-micro-to-ps2](https://github.com/0x0lor1n/pro-micro-to-ps2).
 
 Everything is built on the caller's `pkgs`, so a project's own `flake.lock`
