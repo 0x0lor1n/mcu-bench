@@ -51,7 +51,7 @@ in
     pkgs.runCommand name { } ''
       for f in ${lib.escapeShellArgs files}; do
         cmp -s ${built}/$f ${tracked}/$f \
-          || { echo "$f is stale, run render-docs" >&2; exit 1; }
+          || { echo "$f is stale, regenerate it" >&2; exit 1; }
       done
       touch $out
     '';
