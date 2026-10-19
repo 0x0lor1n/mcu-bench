@@ -128,9 +128,11 @@ in
       shellHook ? "",
     }:
     let
-      width = lib.foldl' lib.max 0 (map (c: lib.stringLength (lib.head c)) commands) + 2;
+      # Rows with an empty description (long one-liners) don't widen the column.
+      described = lib.filter (c: lib.last c != "") commands;
+      width = lib.foldl' lib.max 0 (map (c: lib.stringLength (lib.head c)) described) + 2;
       pad = s: s + lib.concatStrings (lib.genList (_: " ") (width - lib.stringLength s));
-      row = c: "  ${pad (lib.head c)}${lib.last c}";
+      row = c: if lib.last c == "" then "  ${lib.head c}" else "  ${pad (lib.head c)}${lib.last c}";
       help = lib.concatMapStringsSep "\n" row commands;
     in
     pkgs.mkShell {
