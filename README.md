@@ -23,7 +23,7 @@ flash = b.boards.promicro.mkFlash "flash" firmware;
 - `boards.promicro`: `mkFirmware` (arduino-builder, Leonardo core, optional
   libraries and extra flags), `mkFlash` (1200-baud touch, waits for the
   Caterina bootloader, avrdude), `devPackages`, `console`. One attrset per
-  board; Uno/Pico get their own when a project needs them.
+  board.
 - Python package `mcubench` (in `lib.python`):
   - `mcubench.boards`: pin maps, no dependencies. Both views below take
     their pins from here, so a pin the board does not have fails in both.
@@ -40,7 +40,7 @@ flash = b.boards.promicro.mkFlash "flash" firmware;
   check that the tracked copy is current.
 - `mkDevShell { name, packages, commands }`: lefthook hooks, linters and a
   command table on entry.
-- `templates.project`: lefthook, gitleaks, clang-format, ruff, direnv config
+- `templates.default`: lefthook, gitleaks, clang-format, ruff, direnv config
   (`nix flake init -t github:0x0lor1n/mcu-bench`).
 
 ## License
