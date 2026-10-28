@@ -20,7 +20,9 @@ buildPythonPackage {
   ];
   pythonImportsCheck = [
     "mcubench.boards.promicro"
+    "mcubench.fritzing.espprog"
     "mcubench.fritzing.sketch"
+    "mcubench.fritzing.soic8clip"
     "mcubench.schematic"
   ];
 }
